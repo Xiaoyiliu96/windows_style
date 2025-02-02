@@ -1,0 +1,228 @@
+body
+{
+    background: url('images/home_images/desktop_bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    height: 100vh;
+    margin: 0;
+}
+
+a {text-decoration: none;}
+
+iframe
+{
+    overflow: hidden;
+    width: 100%; 
+    height: 100%; 
+    border: none;
+    line-height: 50em;
+}
+
+#desktop 
+{
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+}
+
+#navs 
+{
+    width: 100px;
+    height: auto;
+    padding: 0px;
+    margin: 0;
+    text-align: center;
+    padding-left: 1em;
+}
+
+#nav 
+{
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-position: top center;
+    text-align: center;
+    font-size: 1em;
+    font-family: "Arial";
+    text-transform: uppercase;
+    color: white;
+    margin-top: 2em;
+    cursor: pointer;
+}
+
+.home 
+{
+    background: url('images/home_images/logo_yellow.png');
+    background-size: 4em;
+    padding-top: 4em;
+    text-shadow: 2px 2px 0px #000;
+    font-weight: bold;
+}
+
+    .prject {
+        background: url('images/home_images/logo.png');
+        background-size: 4em;
+        padding-top: 4.5em;
+        text-shadow: 2px 2px 0px #000;
+        font-weight: bold;
+    }
+
+    .coding {
+        background: url('images/home_images/coding.png');
+        background-size: 4em;
+        padding-top: 4.5em;
+        text-shadow: 2px 2px 0px #000;
+        font-weight: bold;
+    }
+
+    .phone {
+        background: url('https://cdn-icons-png.freepik.com/256/11731/11731750.png?semt=ais_hybrid');
+        background-size: 4em;
+        padding-top: 4.5em;
+        text-shadow: 2px 2px 0px #000;
+        font-weight: bold;
+    }
+
+ 
+
+    .window {
+        width: 400px;
+        height: 300px;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: white;
+        border: 2px solid #000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: none;  
+        z-index: 100;
+        border-radius: 8px;
+    }
+
+    .window-header {
+        background: #3e3e3e;
+        color: white;
+        padding: 10px;
+        font-size: 1.2em;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        cursor: move;  
+    }
+
+    .close-btn, .minimize-btn, .fullscreen-btn {
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .minimize-btn {
+        background: orange;  
+    }
+
+    .fullscreen-btn {
+        background: green; 
+    }
+
+    .window-content {
+        padding:1em;
+        text-align: center;
+    }
+
+ 
+    .resize-handle {
+        width: 20px;
+        height: 20px;
+        background-color: #3e3e3e;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        cursor: se-resize;
+        border-bottom-right-radius: 4px;
+    }
+
+ 
+    .bottom-nav-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+ 
+        .window {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            display: none; /* Hide windows initially */
+        }
+
+        .window-header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            cursor: move;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .window-content {
+            padding: 10px;
+            overflow: hidden;
+            height: calc(100% - 40px); /* Make sure content area adjusts */
+        }
+
+        .resize-handle {
+            width: 15px;
+            height: 15px;
+            background-color: #888;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            cursor: se-resize;
+        }
+
+        .bottom-nav-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+#bottom_navs {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #281e5d;
+            display: flex;
+            justify-content: flex-start;
+            padding: 1em;
+            
+        }
+
+.copyright
+{
+    color: white;
+    text-align: right;
+    z-index: 2;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    padding-right: 1em;
+    line-height:2em;
+
+}

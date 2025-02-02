@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="desktop_style.css">
+    <title>Desktop View</title>
+ 
+</head>
+<body>
+<div id="desktop">
+    <div id="navs">
+        <a href="javascript:void(0)" onclick="showWindow('home')">
+            <div id="nav" class="home">HOME</div>
+        </a>
+        <a href="javascript:void(0)" onclick="showWindow('projects')">
+            <div id="nav" class="prject">Projects</div>
+        </a>
+        <a href="javascript:void(0)" onclick="showWindow('coding')">
+            <div id="nav" class="coding">Coding</div>
+        </a>
+        <a href="javascript:void(0)" onclick="showWindow('contact')">
+            <div id="nav" class="phone">Contact Me</div>
+        </a>
+    </div>
+
+    <!-- Home Window -->
+    <div id="homeWindow" class="window">
+        <div class="window-header" id="homeWindowHeader">
+            <span>Home</span>
+            <div>
+                <button class="minimize-btn" onclick="minimizeWindow('homeWindow')">_</button>
+                <button class="fullscreen-btn" onclick="toggleFullScreen('homeWindow')">⛶</button>
+                <button class="close-btn" onclick="closeWindow('homeWindow')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+             <iframe src="https://xiaoyiliu96.github.io/Portfolio/index.html" frameborder="0"></iframe>
+        </div>
+        <div class="resize-handle" id="homeWindowResize"></div>
+    </div>
+
+    <!-- Projects Window -->
+    <div id="projectsWindow" class="window">
+        <div class="window-header" id="projectsWindowHeader">
+            <span>Projects</span>
+            <div>
+                <button class="minimize-btn" onclick="minimizeWindow('projectsWindow')">_</button>
+                <button class="fullscreen-btn" onclick="toggleFullScreen('projectsWindow')">⛶</button>
+                <button class="close-btn" onclick="closeWindow('projectsWindow')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <iframe src="https://xiaoyiliu96.github.io/Portfolio/graphic_designs.html" frameborder="0"></iframe>
+        </div>
+        <div class="resize-handle" id="projectsWindowResize"></div>
+    </div>
+
+    <!-- Coding Window -->
+    <div id="codingWindow" class="window">
+        <div class="window-header" id="codingWindowHeader">
+            <span>Coding</span>
+            <div>
+                <button class="minimize-btn" onclick="minimizeWindow('codingWindow')">_</button>
+                <button class="fullscreen-btn" onclick="toggleFullScreen('codingWindow')">⛶</button>
+                <button class="close-btn" onclick="closeWindow('codingWindow')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <iframe src="https://xiaoyiliu96.github.io/Portfolio/python_to_do_list.html" frameborder="0"></iframe>
+        </div>
+        <div class="resize-handle" id="codingWindowResize"></div>
+    </div>
+
+    <!-- Contact Window -->
+    <div id="contactWindow" class="window">
+        <div class="window-header" id="contactWindowHeader">
+            <span>Contact Me</span>
+            <div>
+                <button class="minimize-btn" onclick="minimizeWindow('contactWindow')">_</button>
+                <button class="fullscreen-btn" onclick="toggleFullScreen('contactWindow')">⛶</button>
+                <button class="close-btn" onclick="closeWindow('contactWindow')">X</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <iframe src="https://xiaoyiliu96.github.io/Portfolio/contact_me.html" frameborder="0" ></iframe>
+        </div>
+        <div class="resize-handle" id="contactWindowResize"></div>
+    </div>
+</div>
+
+<div id="bottom_navs"> <div class="copyright">Copyright &copy; Xiaoyi Liu 2025</div> </div>
+
+
+
+<script type="text/javascript">
+    // Function to show the window content
+    function showWindow(page) {
+        // Hide all windows
+        const windows = document.querySelectorAll('.window');
+        windows.forEach(window => {
+            window.style.display = 'none';
+        });
+
+        // Show the clicked window
+        const windowToShow = document.getElementById(page + 'Window');
+        windowToShow.style.display = 'block';
+    }
+
+    // Function to close a window
+    function closeWindow(windowId) {
+        const windowToClose = document.getElementById(windowId);
+        windowToClose.style.display = 'none';
+    }
+
+    // Function to minimize a window
+    function minimizeWindow(windowId) {
+        const windowToMinimize = document.getElementById(windowId);
+        const windowIcon = createMinimizedIcon(windowId);
+        windowToMinimize.style.display = 'none';
+        document.getElementById('bottom_navs').appendChild(windowIcon);
+    }
+
+    // Create minimized window icon and append to bottom navigation
+    function createMinimizedIcon(windowId) {
+        const icon = document.createElement('img');
+        icon.src = getIconSource(windowId);
+        icon.classList.add('bottom-nav-icon');
+        icon.setAttribute('onclick', `restoreWindow('${windowId}')`);
+        return icon;
+    }
+
+    // Get icon source for each window
+    function getIconSource(windowId) {
+        if (windowId === 'homeWindow') return 'images/home_images/logo_yellow.png';
+        if (windowId === 'projectsWindow') return 'images/home_images/logo.png';
+        if (windowId === 'codingWindow') return 'images/home_images/coding.png';
+        if (windowId === 'contactWindow') return 'https://cdn-icons-png.freepik.com/256/11731/11731750.png?semt=ais_hybrid';
+    }
+
+    // Function to restore a minimized window
+    function restoreWindow(windowId) {
+        const windowToRestore = document.getElementById(windowId);
+        windowToRestore.style.display = 'block';
+        removeMinimizedIcon(windowId);
+    }
+
+    // Remove minimized window icon from bottom nav
+    function removeMinimizedIcon(windowId) {
+        const icons = document.querySelectorAll('#bottom_navs img');
+        icons.forEach(icon => {
+            if (icon.src === getIconSource(windowId)) {
+                icon.remove();
+            }
+        });
+    }
+
+    // Full-screen toggle
+    function toggleFullScreen(windowId) {
+        const windowElement = document.getElementById(windowId);
+
+        if (!document.fullscreenElement && !windowElement.isFullscreen) {
+            // Request fullscreen for the window
+            if (windowElement.requestFullscreen) {
+                windowElement.requestFullscreen();
+            }
+        } else {
+            // Exit fullscreen if already in fullscreen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    }
+
+    // Make windows draggable
+    function makeWindowDraggable(windowId) {
+        const windowElement = document.getElementById(windowId);
+        const header = windowElement.querySelector('.window-header');
+        let isMouseDown = false;
+        let offsetX, offsetY;
+
+        header.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            offsetX = e.clientX - windowElement.offsetLeft;
+            offsetY = e.clientY - windowElement.offsetTop;
+            windowElement.style.zIndex = 101; // Bring the window to the front
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isMouseDown) return;
+            windowElement.style.left = `${e.clientX - offsetX}px`;
+            windowElement.style.top = `${e.clientY - offsetY}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+    }
+
+    // Make all windows draggable
+    makeWindowDraggable('homeWindow');
+    makeWindowDraggable('projectsWindow');
+    makeWindowDraggable('codingWindow');
+    makeWindowDraggable('contactWindow');
+
+    // Make all windows resizable
+    function makeWindowResizable(windowId) {
+        const windowElement = document.getElementById(windowId);
+        const resizeHandle = windowElement.querySelector('.resize-handle');
+        let isResizing = false;
+        let startX, startY, startWidth, startHeight;
+
+        resizeHandle.addEventListener('mousedown', (e) => {
+            isResizing = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            startWidth = windowElement.offsetWidth;
+            startHeight = windowElement.offsetHeight;
+            windowElement.style.zIndex = 102; // Bring the window to the front during resize
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isResizing) return;
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+            windowElement.style.width = `${startWidth + deltaX}px`;
+            windowElement.style.height = `${startHeight + deltaY}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isResizing = false;
+        });
+    }
+
+    // Enable resizing for all windows
+    makeWindowResizable('homeWindow');
+    makeWindowResizable('projectsWindow');
+    makeWindowResizable('codingWindow');
+    makeWindowResizable('contactWindow');
+</script>
+
+</body>
+</html>
